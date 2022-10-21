@@ -16,6 +16,8 @@
         android:hint="E-Mail"
         android:inputType="textEmailAddress"
         android:paddingStart="15dp"
+        android:textColor="#222020"
+        android:textColorHint="#5A5757"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -30,6 +32,8 @@
         android:hint="Password"
         android:inputType="textPassword"
         android:paddingStart="15dp"
+        android:textColor="#222020"
+        android:textColorHint="#5A5757"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress" />
@@ -52,7 +56,6 @@
         android:layout_marginTop="30dp"
         android:text="Sign In"
         android:textSize="16sp"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button" />

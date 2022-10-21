@@ -24,6 +24,9 @@ public class Home extends AppCompatActivity {
         logout = findViewById(R.id.textView3);
         mAuth = FirebaseAuth.getInstance();
 
+        TextView tv = findViewById(R.id.textView4);
+        tv.setText("Email : "+mAuth.getCurrentUser().getEmail());
+
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -40,6 +40,7 @@ public class SignInActivity extends AppCompatActivity {
         signUp = findViewById(R.id.textView);
         mAuth = FirebaseAuth.getInstance();
 
+        // sign up button
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -47,6 +48,7 @@ public class SignInActivity extends AppCompatActivity {
             }
         });
 
+        // sign in button
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -55,22 +57,24 @@ public class SignInActivity extends AppCompatActivity {
 
                 if(!emailText.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(emailText).matches()){
                     if(passwordText.length()>=8){
-                        // sending data to firebase
-                        mAuth.signInWithEmailAndPassword(emailText,passwordText)
-                                .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                                    @Override
-                                    public void onSuccess(AuthResult authResult) {
-                                        Toast.makeText(SignInActivity.this,"Signed in successfully",Toast.LENGTH_LONG).show();
-                                        startActivity(new Intent(SignInActivity.this,Home.class));
-                                        finish();
-                                    }
-                                })
-                                .addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        Toast.makeText(SignInActivity.this,"Signed in failed",Toast.LENGTH_LONG).show();
-                                    }
-                                });
+
+                            // sending data to firebase
+                            mAuth.signInWithEmailAndPassword(emailText, passwordText)
+                                    .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                                        @Override
+                                        public void onSuccess(AuthResult authResult) {
+                                            Toast.makeText(SignInActivity.this, "Signed in successfully", Toast.LENGTH_LONG).show();
+                                            startActivity(new Intent(SignInActivity.this, Home.class));
+                                            finish();
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Toast.makeText(SignInActivity.this, "Signed in failed : "+e.getMessage(), Toast.LENGTH_LONG).show();
+                                        }
+                                    });
+
                     }
                     else{ Toast.makeText(SignInActivity.this,"Password is invalid",Toast.LENGTH_SHORT).show(); password.setError("Password includes at least 8 characters"); }
                 }
