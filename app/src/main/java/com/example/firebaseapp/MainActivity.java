@@ -65,8 +65,21 @@ public class MainActivity extends AppCompatActivity {
                                     .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                                         @Override
                                         public void onSuccess(AuthResult authResult) {
-                                            Toast.makeText(MainActivity.this, "Signed up successfully", Toast.LENGTH_LONG).show();
-                                            startActivity(new Intent(MainActivity.this, SignInActivity.class));
+                                            // send email
+                                            mAuth.getCurrentUser().sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void unused) {
+                                                    Toast.makeText(MainActivity.this, "Signed up successfully and verification mail sent", Toast.LENGTH_LONG).show();
+                                                }
+                                            })
+                                            .addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e) {
+                                                    Toast.makeText(MainActivity.this, "Signed up successfully and verification mail not sent", Toast.LENGTH_LONG).show();
+                                                }
+                                            });
+
+                                            startActivity(new Intent(MainActivity.this, Home.class));
                                             finish();
                                         }
                                     })
